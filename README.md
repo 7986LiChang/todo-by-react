@@ -1,6 +1,8 @@
 # todo-by-react
 基于react实现简单的个人任务管理系统 todo
 
+使用redux实现数据流管理
+
 **目标实现效果如下：**
 ![](https://github.com/baidu-ife/ife/blob/master/2015_spring/task/task0003/img/design.jpg)
 

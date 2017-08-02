@@ -1,0 +1,77 @@
+/* Base Application Styles */
+//利用sass混入@mixin定义重用代码块
+@mixin dis-whole{
+  width: 100%;
+  height: 100%;
+}
+
+html, body {
+  @include dis-whole;
+}
+
+#app{
+  @include dis-whole;
+}
+//--- todo整个界面 wrap-content开始
+.wrap-content {
+  @include dis-whole;
+}
+//--- wrap-content结束
+
+//---导航条 header开始
+.header{
+  width: 100%;
+  height: 70px;
+  background-color: rgb(221, 221, 221);
+  color: rgb(190, 190, 190);
+  line-height: 70px;
+  font-weight: normal;
+  padding-left: 20px;
+  margin: 0;
+}
+//--- header结束
+
+//---显示todo任务 main-content开始
+.main-content{
+  height: 100%;
+}
+//--- main-content结束
+
+//--- 清除main-content浮动
+.clearfix:after{
+  content: "020";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+.clearfix{
+  zoom: 1;
+}
+//清除浮动结束
+
+//--- 左侧显示任务分类 left-task-category开始
+.left-task-category{
+  float: left;
+  width: 200px;
+  height: 100%;
+  background-color: rgb(242, 242, 242);  
+}
+//--- left-task-category结束
+
+//--- 中部显示任务列表 middle-task-view开始
+.middle-task-list{
+  float: left;
+  width: 200px;
+  height: 100%;
+  background-color: rgb(225, 225, 225);
+}
+//--- middle-task-view结束
+
+//--- 右侧展示任务详情 right-task-content开始
+.right-task-content{
+  height: 100%;
+  background-color: #fff;
+}
+//--- right-task-content结束
+
