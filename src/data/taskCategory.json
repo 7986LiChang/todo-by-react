@@ -1,0 +1,59 @@
+[
+	{
+		"menuId": 1,
+		"name": "默认分类",
+		"children": [
+			{
+				"menuId": 7,
+				"name": "html",
+				"children":[]
+			},
+			{
+				"menuId": 8,
+				"name": "css",
+				"children":[]
+			}
+		]
+	},
+	{
+		"menuId": 2,
+		"name": "ifeTask任务",
+		"children": [
+			{
+				"menuId": 9,
+				"name": "task-018",
+				"children":[]
+			},
+			{
+				"menuId": 10,
+				"name": "task-019",
+				"children":[]
+			},
+			{
+				"menuId": 11,
+				"name": "task-020",
+				"children":[]
+			}		
+		]		
+	},
+	{
+		"menuId": 3,
+		"name": "NodeJS项目",
+		"children": []
+	},
+	{
+		"menuId": 4,
+		"name": "React项目",
+		"children": []
+	},
+	{
+		"menuId": 5,
+		"name": "模块化编程学习",
+		"children": []
+	},
+	{
+		"menuId": 6,
+		"name": "JavaScript基础项目",
+		"children": []
+	}
+]

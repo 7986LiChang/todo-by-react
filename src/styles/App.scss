@@ -1,77 +1,364 @@
-/* Base Application Styles */
+
+@font-face {
+  font-family:"icons-add";
+  src: url("../fonts/icons/add.eot") format("embedded-opentype"),
+       url("../fonts/icons/add.woff") format("woff"),
+       url("../fonts/icons/add.ttf") format("truetype"),
+       url("../fonts/icons/add.svg") format("svg")
+}
+
+@font-face {
+  font-family:"icons-project";
+  src: url("../fonts/icons/project.eot") format("embedded-opentype"),
+       url("../fonts/icons/project.woff") format("woff"),
+       url("../fonts/icons/project.ttf") format("truetype"),
+       url("../fonts/icons/project.svg") format("svg")
+}
+
+@font-face {
+  font-family:"icons-edit";
+  src: url("../fonts/icons/edit.eot") format("embedded-opentype"),
+       url("../fonts/icons/edit.woff") format("woff"),
+       url("../fonts/icons/edit.ttf") format("truetype"),
+       url("../fonts/icons/edit.svg") format("svg")
+}
+@font-face {
+  font-family:"icons-ok";
+  src: url("../fonts/icons/ok.eot") format("embedded-opentype"),
+       url("../fonts/icons/ok.woff") format("woff"),
+       url("../fonts/icons/ok.ttf") format("truetype"),
+       url("../fonts/icons/ok.svg") format("svg")
+}
+@font-face {
+  font-family:"icons-file";
+  src: url("../fonts/icons/file.eot") format("embedded-opentype"),
+       url("../fonts/icons/file.woff") format("woff"),
+       url("../fonts/icons/file.ttf") format("truetype"),
+       url("../fonts/icons/file.svg") format("svg")
+}
+
 //利用sass混入@mixin定义重用代码块
-@mixin dis-whole{
+@mixin dis-whole {
   width: 100%;
   height: 100%;
 }
 
-html, body {
+/*css reset*/
+/*html, body, h1, h2, h3, h4, h5, h6, p, ol, ul, li, pre, code, address, variable, form, fieldset, blockquote {
+ padding: 0;
+ margin: 0;
+ font-size: 100%;
+ font-weight: normal;
+}
+table { border-collapse: collapse; border-spacing: 0; }
+td, th, caption { font-weight: normal; text-align: left; }
+img, fieldset { border: 0; }
+ol { padding-left: 1.4em; list-style: decimal; }
+ul { padding-left: 1.4em; list-style:square; }
+q:before, q:after { content:''; }*/
+
+html{
+  @include dis-whole;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+body {
   @include dis-whole;
 }
 
-#app{
-  @include dis-whole;
+#app {
+  height: 100%; 
+  /*overflow: hidden;*/
 }
+
 //--- todo整个界面 wrap-content开始
 .wrap-content {
   @include dis-whole;
 }
-//--- wrap-content结束
 
+//--- wrap-content结束
 //---导航条 header开始
-.header{
+.header {
   width: 100%;
-  height: 70px;
-  background-color: rgb(221, 221, 221);
-  color: rgb(190, 190, 190);
-  line-height: 70px;
-  font-weight: normal;
+  height: 65px;
+  background-color: #2DA19B;
+  color: #fff;
+  line-height: 65px;
+  font-weight: bold;
+  font-size: 1.5em;
   padding-left: 20px;
   margin: 0;
 }
-//--- header结束
 
+//--- header结束
 //---显示todo任务 main-content开始
-.main-content{
+.main-content {
   height: 100%;
 }
-//--- main-content结束
 
+//--- main-content结束
 //--- 清除main-content浮动
-.clearfix:after{
+.clearfix:after {
   content: "020";
   display: block;
   height: 0;
   clear: both;
   visibility: hidden;
 }
-.clearfix{
+
+.clearfix {
   zoom: 1;
 }
+
 //清除浮动结束
-
 //--- 左侧显示任务分类 left-task-category开始
-.left-task-category{
+.left-task-category {
   float: left;
-  width: 200px;
+  width: 230px;
   height: 100%;
-  background-color: rgb(242, 242, 242);  
+  background-color: rgb(242, 242, 242);
+  position: relative;
 }
+
+.left-task-category ul{
+  padding-left: 25px;
+}
+.left-task-category li{
+  list-style-type: none;
+  color: #1E5D62;
+  display: block;
+}
+.left-task-category li:hover{
+  color: #42B2B8;
+  font-weight: bold;
+}
+
+.left-task-category h4:before{
+  font-family: "icons-file";
+  content: "\e606";
+}
+
+.task-category-title{
+  padding: 20px 0 10px 20px;
+  color: #533b2f;
+  border-bottom: 1px solid #ccc;
+  font-size: 1.3em;
+  font-weight: bold;
+  margin: 0;
+}
+
+.add-task-category{
+  width: 100%;
+  height: 35px;
+  position: absolute;
+  bottom: 0;
+  border-top: 1px solid #B4B3B3;
+  color:#716b6b;
+  a{
+    display: inline-block;
+    padding-left: 10px;
+    line-height: 35px;
+    font-size: 1.2em;
+  }
+  a:hover{
+    cursor: pointer;
+    color: #252424;
+  }
+  a:before{
+    // margin-left: 10px;
+    font-family: "icons-add";
+    content:"\e747"; 
+    margin-right: 8px;
+  }
+}
+
 //--- left-task-category结束
-
 //--- 中部显示任务列表 middle-task-view开始
-.middle-task-list{
+.middle-task-list {
   float: left;
-  width: 200px;
+  width: 250px;
   height: 100%;
-  background-color: rgb(225, 225, 225);
-}
-//--- middle-task-view结束
-
-//--- 右侧展示任务详情 right-task-content开始
-.right-task-content{
-  height: 100%;
+  border-right: 1px solid #B4B3B3;
+  border-left: 1px solid #B4B3B3;
   background-color: #fff;
+  position: relative;
+}
+
+.middle-task-list div:first-child{
+  padding: 15px;
+  margin-top: -3px;
+  border-top: 3px solid #216C6A;
+  background-color: #eeeeee;
+  border-bottom: 1px solid #B4B3B3;
+}
+.task-list-nav-button{
+  margin-top: 8px;
+  margin-left: 5px;
+  /*margin-bottom: 5px;*/
+}
+.task-search-input{
+  display: block;
+  height: 20px;
+  width: 200px;
+  margin: 0px auto;
+  padding: 5px;
+}
+.task-button{
+  height: 30px;
+  margin-right: 5px;
+  padding: 2px 4px;
+  border-radius: 5px;
+  background: transparent;
+  border: 1px solid transparent;
+}
+.task-button:hover{
+    background: #fff;
+    border: 1px solid #7C7A7A;
+}
+.task-button:focus{
+    background: #fff;
+    border: 1px solid #7C7A7A;
+    outline: none;
+}
+.middle-task-list ul{
+  margin: 0px;
+  padding: 0px;
+}
+
+.middle-task-list li{
+  list-style-type: none;
+  padding: 10px 25px;
+  font-size: 1.1em;
+
+}
+.middle-task-list .completed{
+  color:#5DB77E;
+}
+.middle-task-list .uncompleted{
+  color:#ABA9A9;
+}
+.task-list-date{
+  display: block;
+  height: 35px;
+  line-height: 35px;
+  text-align: center;
+  background-color:#FFF4E3;
+}
+
+.middle-task-list a{
+  cursor: pointer;
+}
+.middle-task-list .completed a:hover{
+  font-weight: bold;
+  color: #3C8D65;
+}
+
+.middle-task-list .uncompleted a:hover{
+  font-weight: bolder;
+  color: #848685;
+}
+
+.add-task{
+  width: 100%;
+  height: 35px;
+  position: absolute;
+  bottom: 0;
+  border-top: 1px solid #B4B3B3;
+  background-color: #f2f2f2;
+  color:#716b6b;
+
+  a{
+    display: block;
+    padding-left: 20px;
+    line-height: 35px;
+    font-size: 1.2em;
+  }
+
+  a:hover{
+    cursor: pointer;
+    color: #252424;
+  }
+
+  a:before{
+    // margin-left: 10px;
+    font-family: "icons-add";
+    content:"\e747"; 
+    margin-right: 8px;
+
+  }
+
+}
+
+//--- middle-task-view结束
+//--- 右侧展示任务详情 right-task-content开始
+.right-task-content {
+  width: auto;
+  height: 100%;
+  padding-left: 480px;
+  background-color: #fff;
+  border-bottom: 1px solid #B4B3B3;
+}
+.task-content-head{
+  height: 60px;
+  background-color: #D4D1D1;
+  border-bottom: 1px solid #B4B3B3;
+
+  h2{
+    margin:0;
+    line-height: 60px;
+    margin-left: 20px;
+    display: inline-block;
+  }
+  .confirm-btn{
+    float: right;
+    text-align: center;
+    line-height: 60px;
+    margin-right: 20px;
+    &:hover{
+      cursor: pointer;
+      color: white;
+    }
+    &:after{
+      font-family: "icons-ok";
+      content: "\e63e";
+      font-size: 200%;
+    }
+  }
+
+  .edit-btn{
+    float: right;
+    text-align: center;
+    line-height: 60px;
+    margin-right: 50px;
+    &:hover{
+      cursor: pointer;
+      color: white;
+    }
+    &:after{
+      font-family: "icons-edit";
+      content: "\e604";
+      font-size: 180%;
+    }
+  }
+}
+
+.task-date{
+  height: 50px;
+  background-color:#FBF0DC;
+  border-bottom: 1px solid #B4B3B3;
+}
+.task-date p{
+  margin: 0px;
+  line-height: 50px;
+  font-size: 1.1em;
+  margin-left: 25px;
+  border-bottom: 1px solid #B4B3B3;
+}
+.task-detail-content{
+  padding: 10px 20px;
+}
+.task-detail-content h4{
+  margin:0;
+  font-size: 1.2em;
 }
 //--- right-task-content结束
-
